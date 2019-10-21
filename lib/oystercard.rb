@@ -16,4 +16,8 @@ MAXIMUM_BALANCE = 90
   def deduct(amount)
     @balance -= amount
   end
+
+  def in_journey?
+    false
+  end
 end

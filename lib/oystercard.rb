@@ -18,6 +18,15 @@ MAXIMUM_BALANCE = 90
   end
 
   def in_journey?
-    false
+    true
   end
+
+  def touch_in
+    true
+  end
+
+
+    def touch_out
+      false
+    end
 end

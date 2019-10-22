@@ -53,7 +53,6 @@ describe Oystercard do
     end
 
     it 'remembers exit stationn' do
-      # subject.top_up(1)
       subject.touch_out(station)
       expect(subject.exit_station).to eq station
     end

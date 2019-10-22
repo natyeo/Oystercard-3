@@ -4,11 +4,12 @@ MAXIMUM_BALANCE = 90
 
 MINIMUM_BALANCE = 1
 
-  attr_reader :balance, :in_use, :entry_station
+  attr_reader :balance, :in_use, :entry_station, :exit_station, :journey_history
 
   def initialize
     @balance = 0
     @in_use = false
+    @journey_history = []
   end
 
   def top_up(amount)
@@ -26,9 +27,10 @@ MINIMUM_BALANCE = 1
     @entry_station = station
   end
 
-  def touch_out
+  def touch_out(station)
     deduct(MINIMUM_BALANCE)
     @entry_station = nil
+    @exit_station = station
   end
 
   private
@@ -36,5 +38,4 @@ MINIMUM_BALANCE = 1
   def deduct(amount)
     @balance -= amount
   end
-
 end

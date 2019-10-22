@@ -48,14 +48,21 @@ describe Oystercard do
     it 'can touch out' do
       subject.top_up(1)
       subject.touch_in(station)
-      subject.touch_out
+      subject.touch_out(station)
       expect(subject).not_to be_in_journey
     end
+
+    it 'remembers exit stationn' do
+      # subject.top_up(1)
+      subject.touch_out(station)
+      expect(subject.exit_station).to eq station
+    end
+
 
     it 'deducts fare' do
       subject.top_up(2)
       subject.touch_in(station)
-      expect{ subject.touch_out }.to change{ subject.balance }.by(-Oystercard::MINIMUM_BALANCE)
+      expect{ subject.touch_out(station) }.to change{ subject.balance }.by(-Oystercard::MINIMUM_BALANCE)
     end
   end
 end

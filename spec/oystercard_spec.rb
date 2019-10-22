@@ -14,10 +14,10 @@ describe Oystercard do
       end
 
       context "Over the limit" do
-        it "raises an error if the maximum balance is excceeded" do
-          maximum_balance = Oystercard::MAXIMUM_BALANCE
-          subject.top_up(maximum_balance)
-          expect { subject.top_up 1}.to raise_error "Maximum balance of #{maximum_balance} exceeded"
+        it "Balance will exceed of £#{MAX_BALANCE} maximum" do
+          max_balance = Oystercard::MAX_BALANCE
+          subject.top_up(max_balance)
+          expect { subject.top_up 1}.to raise_error "Maximum balance of #{MAX_BALANCE} exceeded"
         end
       end
     end

@@ -4,7 +4,7 @@ MAXIMUM_BALANCE = 90
 
 MINIMUM_BALANCE = 1
 
-  attr_reader :balance, :in_use
+  attr_reader :balance, :in_use, :entry_station
 
   def initialize
     @balance = 0
@@ -17,17 +17,18 @@ MINIMUM_BALANCE = 1
   end
 
   def in_journey?
-    @in_use
+    !entry_station.nil?
   end
 
-  def touch_in
+  def touch_in(station)
     raise "insufficient balance" if @balance < MINIMUM_BALANCE
     @in_use = true
+    @entry_station = station
   end
 
   def touch_out
     deduct(MINIMUM_BALANCE)
-    @in_use = false
+    @entry_station = nil
   end
 
   private

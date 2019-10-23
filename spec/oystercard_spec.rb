@@ -1,7 +1,9 @@
 require 'oystercard'
+# require 'journey'
 
 describe Oystercard do
   let(:station){ double :station }
+  let(:journey){ Journey.new }
 
   context "card initialised" do
     it 'has a balance of zero' do
@@ -44,7 +46,7 @@ describe Oystercard do
     it 'remembers entry station' do
       subject.top_up(1)
       subject.touch_in(station)
-      expect(subject.current_journey[:entry]).to eq station
+      expect(subject.current_journey.origin).to eq station
     end
   end
 
@@ -61,7 +63,7 @@ describe Oystercard do
 
     it 'remembers exit station' do
       subject.touch_out(station)
-      expect(subject.current_journey[:exit]).to eq station
+      expect(subject.current_journey.destination).to eq station
     end
 
     it 'deducts fare' do
